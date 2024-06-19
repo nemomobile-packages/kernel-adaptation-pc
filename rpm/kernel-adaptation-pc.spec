@@ -42,6 +42,8 @@ make %{_arch}_sailfish_defconfig
 # Verify the config meets the current Mer requirements
 #/usr/bin/mer_verify_config .config
 
+sed -e 's/=m/=y/g' -i .config
+
 perl -p -i -e "s/^EXTRAVERSION.*/EXTRAVERSION = -%{release}/" Makefile
 make %{?_smp_mflags} bzImage
 make %{?_smp_mflags} modules
